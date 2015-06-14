@@ -1,0 +1,49 @@
+extends layout
+
+block content
+  h1 CHIBIDAN 调查问卷
+  p Surveys
+  
+  table(width='70%', border="1")
+    tr
+      th Name
+      th Email
+      th Do you like CHIBIDAN ?
+      th Why
+    - 
+    each rec, value in records
+      tr(align="right")
+        td= rec.name
+        td= rec.email
+        td= rec.chibidan
+        td= rec.reason
+    - 
+    
+  h3 我来回答
+  
+  form(method="post", action="surveys/add")
+    fieldset
+      legend Your Infomation
+      p
+        label(for="name") Username:
+          input(type="text", name="name", value="女仆姐姐")
+      p
+        label(for="email") Email:
+          input(type="text", name="email")
+    fieldset
+      legend Quetions
+      p
+        label(for="chibidan") Do you like CHIBIDAN ?
+          br
+          input(type="radio", name="chibidan", value="抱抱")
+          | 抱抱
+          br
+          input(type="radio", name="chibidan", value="丢出去", checked)
+          | 丢出去
+      p
+        label(for="reason") Why?
+          br
+          input(type="textarea", name="reason", value="他不乖")
+    p.buttons
+      input(type="submit", value="Post")
+  
