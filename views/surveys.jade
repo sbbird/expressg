@@ -46,4 +46,31 @@ block content
           input(type="textarea", name="reason", value="他不乖")
     p.buttons
       input(type="submit", value="Post")
-  
+  p      
+    label sum    
+    input(type="text", id="sum")
+  p  
+    label a
+    input(type="text", id="a")
+  p  
+    label b
+    input(type="text", id="b")
+  p    
+    input(type="button", value="plus", onclick="remotePlus();")
+  script.
+    function remotePlus(){
+      var a = document.getElementById("a").value;
+      var b = document.getElementById("b").value;
+      var request = new XMLHttpRequest();
+      request.onreadystatechange = function()
+      {
+        if (request.readyState == 4 && request.status == 200)
+        {
+          var res=JSON.parse(request.responseText);
+          document.getElementById("sum").value = res['sum'];
+        }
+      }
+      request.open('GET', 'surveys/plus?a='+a+'&b='+b);
+      request.send();
+    }
+    

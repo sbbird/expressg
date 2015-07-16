@@ -11,6 +11,21 @@ var records = {
 }
 
 
+
+
+var callback = function(operator){
+    return function(req, res, next){
+        var a = parseInt(req.query['a']);
+        var b = parseInt(req.query['b']);
+        res.json({
+            'sum': operator(a, b)
+        });
+    };
+};
+
+
+
+
 /* GET users listing. */
 router.get('/', function(req, res, next) {
     res.render('surveys', {
@@ -18,6 +33,17 @@ router.get('/', function(req, res, next) {
     });
 });
 
+router.get('/minus', callback(function(a, b){
+    return a-b;
+}));
+
+router.get('/divide', callback(function(a, b){
+    return a/b;
+}));
+
+router.get('/plus', callback(function(a, b){
+    return a+b;
+}));
 
 router.post('/add', function (req, res) {
     var email = req.body.email;
