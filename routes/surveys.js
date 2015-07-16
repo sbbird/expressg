@@ -45,6 +45,10 @@ router.get('/plus', callback(function(a, b){
     return a+b;
 }));
 
+router.get('/multiply',callback(function(a, b){
+    return a*b;
+}));
+
 router.post('/add', function (req, res) {
     var email = req.body.email;
     if (email in records)
