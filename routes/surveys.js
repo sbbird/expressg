@@ -23,13 +23,18 @@ var callback = function(operator){
     };
 };
 
+var dictionary = {
+  a: 1,
+  b: 2
+};
 
-
-
+console.log(JSON.stringify(dictionary));
 /* GET users listing. */
 router.get('/', function(req, res, next) {
     res.render('surveys', {
-        records: records
+      title: 'nvpujiejie',
+      user: 'chibidan',
+      dictionary: JSON.stringify(dictionary)
     });
 });
 
